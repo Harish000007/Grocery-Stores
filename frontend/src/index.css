@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a.active hr {
+  display: block;
+}
+
+*{
+  font-family: 'Outfit', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: bold;
+
+}
+
+.prata-regular {
+  font-family: "Prata", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.Banner {
+  background: rgb(143, 253, 133);
+  background: linear-gradient(
+    90deg,
+    rgba(143, 253, 133, 1) 30%,
+    rgba(204, 222, 133, 1) 63%,
+    rgba(241, 218, 149, 1) 100%
+  );
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  a.active {
+    background-color: black;
+    color: white;
+  }
+}
