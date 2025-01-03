@@ -6,8 +6,8 @@ import { toast } from "react-toastify";
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
-  const currency = "$";
-  const delivery_fee = 0.99;
+  const currency = "Rs.";
+  const delivery_fee = 10;
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [cartItems, setCartItems] = useState(
     JSON.parse(localStorage.getItem("cartItems")) || {}
@@ -21,9 +21,9 @@ const ShopContextProvider = (props) => {
       setCartItems((prevCart) => {
         const updatedCart = {
           ...prevCart,
-          [itemId]: (prevCart[itemId] || 0) + 1,
+          [itemId]: (prevCart[itemId] || 0) + 1
         };
-        localStorage.setItem("cartItems", JSON.stringify(updatedCart)); // Persist updated cart
+        localStorage.setItem("cartItems", JSON.stringify(updatedCart));
         return updatedCart;
       });
 
@@ -34,8 +34,8 @@ const ShopContextProvider = (props) => {
             { itemId },
             {
               headers: {
-                token,
-              },
+                token
+              }
             }
           );
         } catch (error) {
@@ -48,7 +48,10 @@ const ShopContextProvider = (props) => {
   );
 
   const getCartCount = useCallback(() => {
-    return Object.values(cartItems).reduce((total, quantity) => total + quantity, 0);
+    return Object.values(cartItems).reduce(
+      (total, quantity) => total + quantity,
+      0
+    );
   }, [cartItems]);
 
   const updateQuantity = useCallback(
@@ -56,9 +59,9 @@ const ShopContextProvider = (props) => {
       setCartItems((prevCart) => {
         const updatedCart = {
           ...prevCart,
-          [itemId]: quantity,
+          [itemId]: quantity
         };
-        localStorage.setItem("cartItems", JSON.stringify(updatedCart)); // Persist updated cart
+        localStorage.setItem("cartItems", JSON.stringify(updatedCart));
         return updatedCart;
       });
 
@@ -69,8 +72,8 @@ const ShopContextProvider = (props) => {
             { itemId, quantity },
             {
               headers: {
-                token,
-              },
+                token
+              }
             }
           );
         } catch (error) {
@@ -83,36 +86,39 @@ const ShopContextProvider = (props) => {
   );
 
   const getCartAmount = useCallback(() => {
-    return Object.entries(cartItems).reduce((totalAmount, [itemId, quantity]) => {
-      const itemInfo = products.find((product) => product._id === itemId);
-      if (itemInfo && quantity > 0) {
-        return totalAmount + itemInfo.price * quantity;
-      }
-      return totalAmount;
-    }, 0);
+    return Object.entries(cartItems).reduce(
+      (totalAmount, [itemId, quantity]) => {
+        const itemInfo = products.find((product) => product._id === itemId);
+        if (itemInfo && quantity > 0) {
+          return totalAmount + itemInfo.price * quantity;
+        }
+        return totalAmount;
+      },
+      0
+    );
   }, [cartItems, products]);
 
   const getProductData = async () => {
     try {
       const response = await axios.get(`${backendUrl}/api/product/list`);
-      console.log("API Response:", response.data); // Debugging response
+      console.log("API Response:", response.data);
       if (response.data.success) {
         setProducts(response.data.products);
       } else {
         toast.error(response.data.error || "Failed to fetch products");
       }
     } catch (error) {
-      console.error(error.response || error); // More detailed error logging
+      console.error(error.response || error);
       toast.error("Error fetching product data");
     }
   };
 
   useEffect(() => {
     getProductData();
-  }, []); // Fetch data only once on mount
+  }, []);
 
   useEffect(() => {
-    localStorage.setItem("token", token); // Persist token to localStorage
+    localStorage.setItem("token", token);
   }, [token]);
 
   const value = {
@@ -127,13 +133,11 @@ const ShopContextProvider = (props) => {
     navigate,
     backendUrl,
     token,
-    setToken,
+    setToken
   };
 
   return (
-    <ShopContext.Provider value={value}>
-      {props.children}
-    </ShopContext.Provider>
+    <ShopContext.Provider value={value}>{props.children}</ShopContext.Provider>
   );
 };
 

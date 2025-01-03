@@ -5,8 +5,7 @@ import { backendUrl } from "../App";
 import { toast } from "react-toastify";
 
 const Add = ({ token }) => {
-  const [image, setImage] = useState(false);
-
+  const [image, setImage] = useState(null); // Use null instead of false
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -21,7 +20,7 @@ const Add = ({ token }) => {
       formData.append("description", description);
       formData.append("price", price);
 
-      image && formData.append("image", image);
+      if (image) formData.append("image", image); // Only append if image exists
 
       const response = await axios.post(
         backendUrl + "/api/product/add",
@@ -35,14 +34,14 @@ const Add = ({ token }) => {
         toast.success(response.data.message);
         setName("");
         setDescription("");
-        setImage(false);
+        setImage(null); // Reset image to null
         setPrice("");
       } else {
-        toast.success(response.data.message);
+        toast.error(response.data.message); // Show error toast on failure
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.message);
+      toast.error(error.message); // Show error message from catch block
     }
   };
 
@@ -54,13 +53,12 @@ const Add = ({ token }) => {
       >
         <div>
           <p className="mb-2">Upload Image</p>
-
           <div className="flex gap-2">
             <label htmlFor="image">
               <img
                 className="w-20"
                 src={!image ? assets.upload_area : URL.createObjectURL(image)}
-                alt=""
+                alt="Upload"
               />
               <input
                 onChange={(e) => setImage(e.target.files[0])}
@@ -102,8 +100,9 @@ const Add = ({ token }) => {
             onChange={(e) => setPrice(e.target.value)}
             value={price}
             className="w-full px-3 py-2 sm:w-[120px]"
-            type="Number"
+            type="number"
             placeholder="Price"
+            required
           />
         </div>
 

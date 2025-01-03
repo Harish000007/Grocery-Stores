@@ -3,6 +3,7 @@ import axios from "axios";
 import { backendUrl, currency } from "../App";
 import { toast } from "react-toastify";
 import { assets } from "../assets/assets";
+import Title from "../components/Title";
 
 const Orders = ({ token }) => {
   const [orders, setOrders] = useState([]);
@@ -54,7 +55,10 @@ const Orders = ({ token }) => {
 
   return (
     <div>
-      <h3>Order Page</h3>
+      <h3 className="text-2xl">
+        <Title text1={'Order'} text2={'Page'}/>
+      </h3>
+      <hr className="h-2"/>
       <div>
         {orders.map((order, index) => (
           <div
@@ -76,7 +80,7 @@ const Orders = ({ token }) => {
                 {order.address.firstName + " " + order.address.lastName}
               </p>
               <div>
-                <p>{order.address.street + ", "}</p>
+                <p>{order.address.district + ", "}</p>
                 <p>
                   {order.address.city +
                     ", " +

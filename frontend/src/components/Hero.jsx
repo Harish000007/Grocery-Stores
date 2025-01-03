@@ -12,16 +12,18 @@ const Hero = () => {
             <p className="w-8 md:w-11 h-[2px] bg-[#000]"></p>
             <p className="font-medium text-sm md:text-base">Get Fresh</p>
           </div>
-          <h1 className="prata-regular text-3xl sm:py-3 lg:text-5xl leading-relaxed">
-            Organic
+          <h1 className="text-3xl sm:py-3 lg:text-5xl leading-relaxed">
+            <span className="prata-regular border text-white bg-purple-400 px-3 py-2  ">
+              Organic
+            </span>
           </h1>
           <div className="flex items-center gap-2">
             <p className="font-semibold text-sm md:text-base">Food Everyday</p>
             <p className="w-8 md:w-11 h-[1px] bg-[#000]"></p>
           </div>
-          <p className="mt-5">Making Grocery Food Errrands Worth Your While</p>
+          <p className="mt-5">Smart, Simple, and Satisfying Grocery Shopping</p>
           <Link to="/collection">
-            <button className="inline-flex items-center justify-center rounded-md text-sm font-medium text-white h-10 px-4 py-2 bg-green-700 mt-5">
+            <button className="inline-flex items-center justify-center rounded-md text-sm font-medium text-white h-10 px-4 py-2 bg-green-600 mt-5">
               Buy Product
             </button>
           </Link>

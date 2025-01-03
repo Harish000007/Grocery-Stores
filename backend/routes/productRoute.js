@@ -6,7 +6,7 @@ import adminAuth from '../middleware/adminAuth.js';
 const productRouter = express.Router();
 
 // Route for adding a product with image upload
-productRouter.post('/add',adminAuth, upload.fields([{ name: 'image', maxCount: 1 }]), addProduct);
+productRouter.post('/add', adminAuth, upload.fields([{ name: 'image', maxCount: 1 }]), addProduct);
 
 // Route for listing all products
 productRouter.get('/list', listProduct);
@@ -15,7 +15,7 @@ productRouter.get('/list', listProduct);
 productRouter.get('/single', singleProduct);
 
 // Route for updating a product by ID
-productRouter.put('/update', adminAuth, upload.fields([{ name: 'image', maxCount: 1 }]), updateProduct);
+productRouter.put('/update/:id', adminAuth, upload.fields([{ name: 'image', maxCount: 1 }]), updateProduct);
 
 // Route for removing a product by ID
 productRouter.delete('/remove', adminAuth, removeProduct);

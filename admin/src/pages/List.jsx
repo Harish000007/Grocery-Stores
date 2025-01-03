@@ -160,7 +160,7 @@ const List = ({ token }) => {
                 value={price}
                 className="w-full px-3 py-2 sm:w-[120px]"
                 type="number"
-                placeholder="25"
+                placeholder="Price"
                 required
               />
             </div>
@@ -202,7 +202,7 @@ const List = ({ token }) => {
               <img src={item.image[0]} alt={item.name} className="w-16 h-16 object-cover" />
               <p>{item.name}</p>
               <p>{currency}{item.price}</p>
-              <p className="text-center cursor-pointer text-lg" onClick={() => editProduct(item._id)}>Edit</p>
+              <p className="text-center cursor-pointer text-lg" onClick={() => editProduct(item._id)}>UPDATE</p>
               <p className="text-center cursor-pointer text-lg" onClick={() => removeProduct(item._id)}>X</p>
             </div>
           ))}

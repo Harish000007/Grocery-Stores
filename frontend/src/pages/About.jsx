@@ -16,11 +16,12 @@ const About = () => {
         />
         <div className="flex flex-col justify-center gap-6 md:w-2/4 text-gray-600 text-justify">
           <p>
-            An online grocery store is a digital platform that allows customers
-            to browse, order, and pay for groceries online. The store delivers
-            the groceries to the customer’s doorstep or prepares them for
-            pickup. These platforms are gaining popularity due to their
-            convenience, time-saving benefits, and flexibility.
+            Welcome to Online Grocery Store, your trusted destination for fresh
+            and high-quality groceries delivered straight to your doorstep. With
+            our easy-to-use platform, you can shop anytime, from anywhere,
+            ensuring convenience and efficiency. Whether you're looking for
+            fresh fruits, vegetables, dairy products, meats, or household
+            essentials, FreshBite offers a wide selection to meet your needs.
           </p>
           <b className="text-gray-800">Our Mission</b>
           <p>

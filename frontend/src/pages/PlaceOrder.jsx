@@ -8,17 +8,25 @@ import { toast } from "react-toastify";
 
 const PlaceOrder = () => {
   const [method, setMethod] = useState("cod");
-  const { navigate, backendUrl, token, cartItems, getCartAmount, delivery_fee, products } = useContext(ShopContext);
+  const {
+    navigate,
+    backendUrl,
+    token,
+    cartItems,
+    getCartAmount,
+    delivery_fee,
+    products
+  } = useContext(ShopContext);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    street: "",
+    district: "",
     city: "",
     state: "",
     zipCode: "",
     country: "",
-    phone: "",
+    phone: ""
   });
 
   const onChangeHandler = (event) => {
@@ -30,8 +38,28 @@ const PlaceOrder = () => {
     event.preventDefault();
 
     // Validate that required fields are filled
-    const { firstName, lastName, email, street, city, state, zipCode, country, phone } = formData;
-    if (!firstName || !lastName || !email || !street || !city || !state || !zipCode || !country || !phone) {
+    const {
+      firstName,
+      lastName,
+      email,
+      district,
+      city,
+      state,
+      zipCode,
+      country,
+      phone
+    } = formData;
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !district ||
+      !city ||
+      !state ||
+      !zipCode ||
+      !country ||
+      !phone
+    ) {
       toast.error("Please fill in all required fields.");
       return;
     }
@@ -53,7 +81,7 @@ const PlaceOrder = () => {
       let orderData = {
         address: formData,
         items: orderItems,
-        amount: getCartAmount() + delivery_fee, // Updated method usage
+        amount: getCartAmount() + delivery_fee // Updated method usage
       };
 
       switch (method) {
@@ -65,7 +93,7 @@ const PlaceOrder = () => {
           );
           if (response.data.success) {
             toast.success(response.data.message);
-            
+
             navigate("/orders");
           } else {
             toast.error(response.data.message);
@@ -118,11 +146,11 @@ const PlaceOrder = () => {
         />
         <input
           onChange={onChangeHandler}
-          name="street"
-          value={formData.street}
+          name="district"
+          value={formData.district}
           className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
           type="text"
-          placeholder="Street"
+          placeholder="District"
         />
         <div className="flex gap-3">
           <input
@@ -165,7 +193,7 @@ const PlaceOrder = () => {
           name="phone"
           value={formData.phone}
           className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
-          type="text"
+          type="number"
           placeholder="Phone"
         />
       </div>
