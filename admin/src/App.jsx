@@ -9,7 +9,7 @@ import Login from "./components/Login";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const backendUrl = https://grocery-backend-ybjg.onrender.com;
+export const backendUrl = "https://grocery-backend-ybjg.onrender.com";
 export const currency = 'Rs.';
 
 const App = () => {
