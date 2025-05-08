@@ -8,7 +8,7 @@ export const ShopContext = createContext();
 const ShopContextProvider = (props) => {
   const currency = "Rs.";
   const delivery_fee = 10;
-  const backendUrl = https://grocery-backend-ybjg.onrender.com;
+  const backendUrl = "https://grocery-backend-ybjg.onrender.com";
   const [cartItems, setCartItems] = useState(
     JSON.parse(localStorage.getItem("cartItems")) || {}
   );
